@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title>Torneo</title>
+		<link href="@Href("~/css/style.css")" rel="stylesheet" />
+
+		@RenderSection("head", required: false)
+
+    </head>
+    <body>
+		<div id="page">
+			<div id="header">
+				<div id="headerRight">
+					<div id="accountSummary">@MembershipHelpers.AccountSummary()</div>
+				</div>
+			</div>
+			<div id="content">
+				<div id="main">
+					@RenderBody()
+				</div>
+			</div>
+		</div>        
+    </body>
+</html>
