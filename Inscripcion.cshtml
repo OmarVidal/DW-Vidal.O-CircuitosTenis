@@ -1,25 +1,77 @@
 ﻿@{
     Layout = "~/Shared/Layouts/_Layout.cshtml";
+    Page.Title = "Inscripcion";
+
+    var licencia = "";
+	var nombre = "";
+	var apellidos = "";
+    var categoria = "";
+
+	Validation.RequireField("licencia","Es necesario introducir una linencia");
+
+	Validation.RequireField("nombre","Es necesario introducir un nombre.");
+
+    Validation.RequireField("apellidos","Es necesario introducir un apellido.");
+
+    Validation.RequireField("categoria","Es necesario introducir una categoria.");
+	
+	
+	if(IsPost)
+	{
+		licencia = Request["licencia"];
+		nombre = Request["nombre"];
+		apellidos = Request["apellidos"];
+        categoria = Request["categoria"];
+
+		if(Validation.IsValid())
+		{				
+			if(WebSecurity.UserExists(licencia))
+			{
+				ModelState.AddError("licencia", "Ya existe un jugador con esta licencia.");
+			}
+			
+			if(ModelState.IsValid)
+			{
+				var db = Database.Open("CircuitosTorneo");
+		        var Sql = @"INSERT INTO Jugadores (Licencia, Nombre, Apellidos,Categoria)
+						        VALUES ( @0, @1, @2, @3)";
+
+		        db.Execute(Sql, licencia, nombre, apellidos, categoria);
+                if(Request.QueryString["sender"] != null)
+				{
+					Response.Redirect(Request.QueryString["sender"]);
+				}
+				else
+				{
+					Response.Redirect("~/Default");
+				}
+			}
+		}
+
+	}
 }
 
-<form>
-    <table>
-        <tr>
-            <td>Licencia</td>
-            <td><input type="text" id="licencia"/></td>
-        </tr>
-        <tr>
-            <td>Nombre</td>
-            <td><input type="text" id="nombre"/></td>
-        </tr>
-        <tr>
-            <td>Apellidos</td>
-            <td><input type="text" id="apellidos"/></td>
-        </tr>
-        <tr>
-            <td>Categoria</td>
-            <td><input type="text" id="categoria"/></td>
-        </tr>
-    </table>
-    <input type="submit" id="inscribir" value="Incribir"/>
+<form action="Inscripcion?@Request.QueryString" method="post">
+    <p>
+        @Html.Label("Licencia: ", "licencia")
+        @Html.TextBox("licencia", licencia)
+	    @Html.ValidationMessage("licencia")
+    </p>
+    <p>
+        @Html.Label("Nombre: ", "nombre")
+        @Html.TextBox("nombre", nombre)
+	    @Html.ValidationMessage("nombre")
+    </p>
+    <p>
+        @Html.Label("Apellidos: ", "apellidos")
+        @Html.TextBox("apellidos", apellidos)
+	    @Html.ValidationMessage("apellidos")
+    </p>
+    <p>
+        @Html.Label("Categoria: ", "categoria")
+        @Html.TextBox("categoria", categoria)
+	    @Html.ValidationMessage("categoria")
+    </p>
+    <input type="submit" id="inscribir" value="Inscribir"/>
+    <a id="inicio" href="~/default">Volver al Inicio</a>
 </form>

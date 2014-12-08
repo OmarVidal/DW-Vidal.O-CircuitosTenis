@@ -1,15 +1,26 @@
 ﻿@{
-    
+    Layout = "~/Shared/Layouts/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title></title>
-    </head>
-    <body>
-        
-    </body>
-</html>
+<form>
+    <table>
+        <tr>
+            <td>Licencia</td>
+            <td><input type="text" id="licencia"/></td>
+        </tr>
+        <tr>
+            <td>Nombre</td>
+            <td><input type="text" id="nombre"/></td>
+        </tr>
+        <tr>
+            <td>Apellidos</td>
+            <td><input type="text" id="apellidos"/></td>
+        </tr>
+        <tr>
+            <td>Categoria</td>
+            <td><input type="text" id="categoria"/></td>
+        </tr>
+    </table>
+    <input type="submit" id="eliminar" value="Eliminar"/>
+    <a id="inicio" href="~/default">Volver al Inicio</a>
+</form>

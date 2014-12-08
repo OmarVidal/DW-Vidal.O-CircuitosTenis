@@ -48,7 +48,7 @@
 }
 
 <h1>Registrar nueva cuenta de usuario</h1>
-<form action="Register?@Request.QueryString" method="post" class="accountForm">
+<form action="Register?@Request.QueryString" method="post">
 	<p>
 		@Html.Label("Email: ", "email")<br />
 		@Html.TextBox("email", email)
@@ -67,4 +67,5 @@
 	<p>
 		<input type="submit" value="Registrar" />
 	</p>
+    <a id="inicio" href="~/default">Volver al Inicio</a>
 </form>
