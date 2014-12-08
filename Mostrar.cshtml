@@ -1,5 +1,30 @@
 ﻿@{
     Layout = "~/Shared/Layouts/_Layout.cshtml";
+    Page.Title = "Jugadores";
+
+	var db = Database.Open("CircuitosTorneo");
+	var sqlSelect = "SELECT Licencia,Nombre,Apellidos,Categoria FROM Jugadores";
+
+	var jugadores = db.Query(sqlSelect);
 }
+<h2>@Page.Title</h2>
+<table>
+    <tr>
+        <th>Licencia</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Categoria</th>
+    </tr>
+    @foreach(var item in jugadores)
+    {
+        <tr>
+            <td>@item.Licencia</td>   
+            <td>@item.Nombre</td>   
+            <td>@item.Apellidos</td>   
+            <td>@item.Categoria</td> 
+        </tr>  
+    }
+
+</table>
 <a id="inicio" href="~/default">Volver al Inicio</a>
 
