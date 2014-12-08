@@ -1,26 +1,70 @@
 ﻿@{
     Layout = "~/Shared/Layouts/_Layout.cshtml";
+    Page.Title = "Eliminar Jugador";
+
+    var licencia = "";
+	var nombre = "";
+	var apellidos = "";
+    var categoria = "";
+
+	Validation.RequireField("licencia","Es necesario introducir una linencia");
+
+	Validation.RequireField("nombre","Es necesario introducir un nombre.");
+
+    Validation.RequireField("apellidos","Es necesario introducir un apellido.");
+
+    Validation.RequireField("categoria","Es necesario introducir una categoria.");
+	
+	
+	if(IsPost)
+	{
+		licencia = Request["licencia"];
+		nombre = Request["nombre"];
+		apellidos = Request["apellidos"];
+        categoria = Request["categoria"];
+
+		if(Validation.IsValid())
+		{				
+			
+			var db = Database.Open("CircuitosTorneo");
+		    var Sql = @"DELETE FROM Jugadores WHERE Licencia=@0 and Nombre=@1 and Apellidos=@2 and Categoria=@3";
+
+		    var jugador=db.Execute(Sql, licencia, nombre, apellidos, categoria);	
+            if(jugador == 0)
+            {
+                Response.Redirect("EliminacionIncorrecta");
+            }
+            else
+            {
+                Response.Redirect("EliminacionCorrecta");
+            }          
+		}
+
+	}
 }
 
-<form>
-    <table>
-        <tr>
-            <td>Licencia</td>
-            <td><input type="text" id="licencia"/></td>
-        </tr>
-        <tr>
-            <td>Nombre</td>
-            <td><input type="text" id="nombre"/></td>
-        </tr>
-        <tr>
-            <td>Apellidos</td>
-            <td><input type="text" id="apellidos"/></td>
-        </tr>
-        <tr>
-            <td>Categoria</td>
-            <td><input type="text" id="categoria"/></td>
-        </tr>
-    </table>
+<h2>@Page.Title</h2>
+<form action="Borrar" method="post">
+    <p>
+        @Html.Label("Licencia: ", "licencia")
+        @Html.TextBox("licencia", licencia)
+	    @Html.ValidationMessage("licencia")
+    </p>
+    <p>
+        @Html.Label("Nombre: ", "nombre")
+        @Html.TextBox("nombre", nombre)
+	    @Html.ValidationMessage("nombre")
+    </p>
+    <p>
+        @Html.Label("Apellidos: ", "apellidos")
+        @Html.TextBox("apellidos", apellidos)
+	    @Html.ValidationMessage("apellidos")
+    </p>
+    <p>
+        @Html.Label("Categoria: ", "categoria")
+        @Html.TextBox("categoria", categoria)
+	    @Html.ValidationMessage("categoria")
+    </p>
     <input type="submit" id="eliminar" value="Eliminar"/>
     <a id="inicio" href="~/default">Volver al Inicio</a>
 </form>
