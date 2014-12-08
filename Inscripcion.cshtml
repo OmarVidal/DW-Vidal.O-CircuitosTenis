@@ -36,16 +36,10 @@
 		        var Sql = @"INSERT INTO Jugadores (Licencia, Nombre, Apellidos,Categoria)
 						        VALUES ( @0, @1, @2, @3)";
 
-		        db.Execute(Sql, licencia, nombre, apellidos, categoria);
-                if(Request.QueryString["sender"] != null)
-				{
-					Response.Redirect(Request.QueryString["sender"]);
-				}
-				else
-				{
-					Response.Redirect("~/Default");
-				}
-			}
+		        db.Execute(Sql, licencia, nombre, apellidos, categoria);	
+                
+                Response.Redirect("InscripcionCorrecta");	
+			}          
 		}
 
 	}

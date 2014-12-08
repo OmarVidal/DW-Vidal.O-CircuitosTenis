@@ -19,6 +19,8 @@ a{
 	margin: 0 auto;
 	width: 900px;
 	background-color: #cdcdcd;
+    margin-top: 60px;
+    border-radius: 10px 10px 10px 10px;
 }
 
 #headerRight{
