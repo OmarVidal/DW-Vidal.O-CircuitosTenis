@@ -3,7 +3,7 @@
 
    if(WebSecurity.IsAuthenticated) {
    		<text>
-			Bienvenido <a href="@Href("~/Account/ChangePassword")">@WebSecurity.CurrentUserName</a> |
+			Bienvenido @WebSecurity.CurrentUserName |
 			<a href="@Href("~/Account/Logout")">Cerrar Sesion</a>
 		</text>
    } else {

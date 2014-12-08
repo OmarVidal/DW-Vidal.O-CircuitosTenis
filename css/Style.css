@@ -1,0 +1,57 @@
+*, html,body {
+        margin: 0px;
+        padding: 0px;
+}
+
+body{
+    background-color: #efefef;
+}
+
+a{
+    text-decoration:none;  
+}
+
+#page {
+	margin: 0 auto;
+	width: 900px;
+	background-color: #fff;
+}
+
+#headerRight{
+    text-align: right;
+}
+
+#content{
+    border-top: 1px solid #cdcdcd;
+	clear: both;
+	margin: 0px 10px 0px 10px;
+	padding: 20px;
+}
+
+#inscripcion{
+    position: relative;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+#mostrar{
+    position: absolute;
+    margin-left: 650px;
+    margin-top: -24px;
+}
+
+#borrar{
+    position: relative;
+    margin-left: 30px;
+    margin-top: 250px;
+}
+
+#modificar{
+    position: absolute;
+    margin-left: 650px;
+    margin-top: -24px;
+}
+
+#sesion{
+    padding-right: 10px;
+}
