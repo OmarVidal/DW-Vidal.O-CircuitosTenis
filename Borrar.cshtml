@@ -1,7 +1,8 @@
 ﻿@{
     Layout = "~/Shared/Layouts/_Layout.cshtml";
     Page.Title = "Eliminar Jugador";
-
+}
+@if(WebSecurity.IsAuthenticated) {
     var licencia = "";
 	var nombre = "";
 	var apellidos = "";
@@ -41,30 +42,37 @@
 		}
 
 	}
-}
+   	<text>
+		<h2>@Page.Title</h2>
+        <form action="Borrar" method="post">
+            <p>
+                @Html.Label("Licencia: ", "licencia")
+                @Html.TextBox("licencia", licencia)
+	            @Html.ValidationMessage("licencia")
+            </p>
+            <p>
+                @Html.Label("Nombre: ", "nombre")
+                @Html.TextBox("nombre", nombre)
+	            @Html.ValidationMessage("nombre")
+            </p>
+            <p>
+                @Html.Label("Apellidos: ", "apellidos")
+                @Html.TextBox("apellidos", apellidos)
+	            @Html.ValidationMessage("apellidos")
+            </p>
+            <p>
+                @Html.Label("Categoria: ", "categoria")
+                @Html.TextBox("categoria", categoria)
+	            @Html.ValidationMessage("categoria")
+            </p>
+            <input type="submit" id="eliminar" value="Eliminar"/>
+            <a id="inicio" href="~/default">Volver al Inicio</a>
+        </form>
+	</text>
+   } else {
+   		<text>
+			<p>Debes Iniciar Sesion para poder eliminar Jugadores.</p>
+            <a id="inicio" href="~/default">Volver al Inicio</a>
+		</text>
+   }
 
-<h2>@Page.Title</h2>
-<form action="Borrar" method="post">
-    <p>
-        @Html.Label("Licencia: ", "licencia")
-        @Html.TextBox("licencia", licencia)
-	    @Html.ValidationMessage("licencia")
-    </p>
-    <p>
-        @Html.Label("Nombre: ", "nombre")
-        @Html.TextBox("nombre", nombre)
-	    @Html.ValidationMessage("nombre")
-    </p>
-    <p>
-        @Html.Label("Apellidos: ", "apellidos")
-        @Html.TextBox("apellidos", apellidos)
-	    @Html.ValidationMessage("apellidos")
-    </p>
-    <p>
-        @Html.Label("Categoria: ", "categoria")
-        @Html.TextBox("categoria", categoria)
-	    @Html.ValidationMessage("categoria")
-    </p>
-    <input type="submit" id="eliminar" value="Eliminar"/>
-    <a id="inicio" href="~/default">Volver al Inicio</a>
-</form>
