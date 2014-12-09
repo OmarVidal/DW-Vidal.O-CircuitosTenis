@@ -1,30 +1,42 @@
 ﻿@{
     Layout = "~/Shared/Layouts/_Layout.cshtml";
     Page.Title = "Jugadores";
-
-	var db = Database.Open("CircuitosTorneo");
+}
+@if(WebSecurity.IsAuthenticated) {
+    var db = Database.Open("CircuitosTorneo");
 	var sqlSelect = "SELECT Licencia,Nombre,Apellidos,Categoria FROM Jugadores";
 
 	var jugadores = db.Query(sqlSelect);
-}
-<h2>@Page.Title</h2>
-<table>
-    <tr>
-        <th id="tabla">Licencia</th>
-        <th id="tabla">Nombre</th>
-        <th id="tabla">Apellidos</th>
-        <th id="tabla">Categoria</th>
-    </tr>
-    @foreach(var i in jugadores)
-    {
-        <tr>
-            <td>@i.Licencia</td>   
-            <td>@i.Nombre</td>   
-            <td>@i.Apellidos</td>   
-            <td>@i.Categoria</td> 
-        </tr>  
-    }
+   	<text>
+        <h2>@Page.Title</h2>
+        <table>
+            <tr>
+                <th id="tabla">Licencia</th>
+                <th id="tabla">Nombre</th>
+                <th id="tabla">Apellidos</th>
+                <th id="tabla">Categoria</th>
+            </tr>
+            @foreach(var i in jugadores)
+            {
+                <tr>
+                    <td>@i.Licencia</td>   
+                    <td>@i.Nombre</td>   
+                    <td>@i.Apellidos</td>   
+                    <td>@i.Categoria</td> 
+                </tr>  
+            }
 
-</table>
-<a id="inicio" href="~/default">Volver al Inicio</a>
+        </table>
+        <a id="inicio" href="~/default">Volver al Inicio</a>
+    </text>
+} 
+else {
+   	<text>
+		<p>Debes Iniciar Sesion para poder ver los datos.</p>
+        <a id="inicio" href="~/default">Volver al Inicio</a>
+	</text>
+}
+	
+
+
 
