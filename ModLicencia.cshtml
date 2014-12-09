@@ -1,0 +1,10 @@
+﻿@{
+    Layout = "~/Shared/Layouts/_Layout.cshtml";
+    Page.Title = "Licencia Jugador";
+}
+<h2>@Page.Title</h2>
+<form action="Modificar.cshtml" method="post">
+    Licencia del Jugador que quieres modificar: <input type="text"/></br>
+    <input type="submit" class="myButton" value="Entrar"/></br>
+    <a id="inicio" href="~/default">Volver al Inicio</a>
+</form>
