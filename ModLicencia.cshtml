@@ -2,9 +2,21 @@
     Layout = "~/Shared/Layouts/_Layout.cshtml";
     Page.Title = "Licencia Jugador";
 }
-<h2>@Page.Title</h2>
-<form action="Modificar.cshtml" method="post">
-    Licencia del Jugador que quieres modificar: <input type="text"/></br>
-    <input type="submit" class="myButton" value="Entrar"/></br>
-    <a id="inicio" href="~/default">Volver al Inicio</a>
-</form>
+@if(WebSecurity.IsAuthenticated)
+{
+    <text>
+        <h2>@Page.Title</h2>
+        <form action="Modificar" method="post">
+            Licencia del Jugador que quieres modificar: <input type="text" name="licencia"/><br />
+            <input type="submit" class="myButton" value="Entrar"/><br />
+            <a id="inicio" href="~/default">Volver al Inicio</a>
+        </form>
+    </text>
+}
+else
+{
+    <text>
+		<p>Debes Iniciar Sesion para poder modificar los datos de los Jugadores.</p>
+        <a id="inicio" href="~/default">Volver al Inicio</a>
+	</text>
+}
